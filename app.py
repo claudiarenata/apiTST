@@ -1,11 +1,15 @@
-# API BY ZALIKHA ADIERA GAMBETTA - 18217027 #
+# API BY ZALIKHA ADIERA GAMBETTA - 18217027 
+# API BY CLAUDIA RENATA MAHARANI D. - 18217048#
 
+import re
+import urllib.request
 import json
 import spotipy
 import spotipy.util as util
 from flask import Flask, jsonify, request
 from flaskext.mysql import MySQL
 from spotipy.oauth2 import SpotifyClientCredentials
+from pytube import YouTube
 
 app = Flask(__name__)
 mysql = MySQL()
@@ -14,7 +18,7 @@ app.config['DEBUG'] = True
 # configure db mysql #
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
+app.config['MYSQL_DATABASE_PASSWORD'] = 'adiera'
 app.config['MYSQL_DATABASE_DB'] = 'playlist'
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 mysql.init_app(app)
@@ -125,6 +129,24 @@ def playlist():
         cursor.close()
     return jsonify(response)
 
+# get all playlist in database
+@app.route('/api/allplaylist', methods=['GET'])
+def allplaylist():
+    global conn, cursor
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM playlist")
+    pList = cursor.fetchall()
+    resplaylist = []
+    for x in pList :
+        resplaylist.append(x[1])
+    response = {
+        'playlistName' : resplaylist
+    }
+    return jsonify(response)
+    conn.close()
+    cursor.close()
+
 # delete playlist data #
 @app.route('/api/playlist', methods=['DELETE'])
 def delete():
@@ -178,6 +200,34 @@ def charts():
         conn.close()
         cursor.close()
     return jsonify(response)
+
+# api audi
+api_key = "AIzaSyAKkGJ78S330UDgvqQ6E04hmhCTGNygf7Q"
+
+def youtubeSearch(keyword): 
+    try : 
+        url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=viewCount&q="+keyword.replace(" ", "&20")+"&key="+api_key
+        json_url= urllib.request.urlopen(url)
+        data = json.loads(json_url.read())
+        res = []
+        # hasil = []
+        
+        for item in data['items'] : 
+            result  = {
+                'url' : "https://m.youtube.com/watch?v="+item['id']['videoId'],
+                'title' : item['snippet']['title'], 
+                'publishedAt' : item['snippet']['publishedAt']
+            }
+            res.append(result)
+        return jsonify(res)
+    except : 
+        req = "Video Not Found."
+        return req
+
+@app.route('/api/ytubesearch', methods=['GET'])
+def index():
+    masukkan = request.args.get('keyword')
+    return youtubeSearch(masukkan)
 
 # execute the app #
 if __name__ == '__main__':
