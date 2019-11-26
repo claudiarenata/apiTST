@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" href="page.css">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="jquery.cookie.js"></script>
+
+<head>
+    <title>E-library ITB</title>
+</head>
+
+<body>
+
+    <h1 class="header">
+        <img src="logo-itb-512px.png" width="60" height="60" alt="logo itb"></img>
+        <p class="judul"> UPT Perpustakaan ITB </p>
+    </h1>
+
+    <div class="tab" style="display: inline-flexbox;">
+        <button class="tablinks" onclick="openTable(event, 'Search')">Search</button>
+        <button class="tablinks" onclick="openTable(event, 'Contact')">Contact</button>
+        <button href="#" class="notification" id="notif" style="background-color: dodgerblue;">Notification</button>
+    </div>
+
+    <!-- <form action="" target="_self" method="get"> -->
+    <p padding: 10px></p>
+    <div id="Search" class="tabcontent">
+        <fieldset id="corners">
+            <legend>Search</legend>
+            <div class="topnav">
+                <form method="GET" action="#">
+                    <p padding: 20px></p>
+                    Judul : <input class="topnav" type="text" placeholder="Mencari Berdasarkan Judul..." name="judul" id="judul" style="float: left;"><br>
+                    <p padding: 20px></p>
+                    <!-- Pengarang : <input class="topnav" type="text" placeholder="Mencari Berdasarkan Pengarang..." name="author" id="author" style="float: left"><br>
+                    <p padding: 10px></p> -->
+                    <select style="width: 100px;" id="bookjurnal">
+                        <option value="book">Book</option>
+                        <option value="jurnal">Jurnal</option>
+                    </select><br>
+                    <button id="cariData" onclick="showtabel()" style="width: 50px; height: 30px;">submit</button>
+                </form>
+            </div><br>
+        </fieldset>
+        <!-- </form> -->
+
+        <!-- tabel hasil pencarian -->
+        <table class="tabBuku" id="tabelBuku" style="display: none">
+            <thead id="tabheadbuku">
+                <tr>
+                    <th>ISBN</th>
+                    <th>Judul</th>
+                    <th>Pengarang</th>
+                    <th>Penerbit</th>
+                    <th>Tahun Terbit</th>
+                    <th>Kategori</th>
+                    <th>Stok</th>
+                <tr>
+            </thead>
+            <tbody id="tabbodybuku"></tbody>
+        </table>
+        <table class="tabBuku" id="tabelJurnal" style="display: none">
+        <thead id="tabheadjurnal">
+            <tr>
+                <th>ID Jurnal</th>
+                <th>Judul</th>
+                <th>Pengarang</th>
+                <th>Tahun Terbit</th>
+                <th>Kategori</th>
+                <th>Stok</th>
+            <tr>
+        </thead>
+        <tbody id="tabbodyjurnal"></tbody>
+        </table>
+
+    </div>
+</body>
+</html>
