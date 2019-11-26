@@ -1,5 +1,5 @@
 # API BY ZALIKHA ADIERA GAMBETTA - 18217027 
-# API BY CLAUDIA RENATA MAHARANI D. - 18217048#
+# API BY CLAUDIA RENATA MAHARANI D. - 18217048
 
 import re
 import urllib.request
@@ -206,7 +206,7 @@ api_key = "AIzaSyAKkGJ78S330UDgvqQ6E04hmhCTGNygf7Q"
 
 def youtubeSearch(keyword): 
     try : 
-        url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=viewCount&q="+keyword.replace(" ", "&20")+"&key="+api_key
+        url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=relevance&q="+keyword.replace(" ", "%20")+"&key="+api_key
         json_url= urllib.request.urlopen(url)
         data = json.loads(json_url.read())
         res = []
