@@ -4,8 +4,16 @@
 <link rel="stylesheet" href="page.css">
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="jquery.cookie.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="page.js"></script>
+  
 
 <head>
     <title>Spy</title>
@@ -13,20 +21,123 @@
 
 <body>
 
-    <h1 class="judul"> Spy - Cari Lagu dan Video Kesukaanmu!</h1>
-
-    <p style="padding:30px"></p>
-   
-    <div class="container">
-    <!-- <form action="" target="_self" method="get"> -->
-        <form action="/action_page.php">
-            <label for="keyword"><h3>Cari Playlist</h3></label>
-            <input type="text" id="keyword" name="keyword" placeholder="Ketik playlist yang kamu mau..">
-          
-            <input type="submit" value="Submit">
-          </form>
+    <div class="jumbotron text-center" style="margin-bottom:0; background-color:#45a04e;">
+        <h1 style="color:white; font-size:60px;">Spy</h1>
+        <p style="color:white; font-size:20px;">Cari Lagu dan Video Kesukaanmu</p> 
     </div>
-        <!-- </form> -->
+    
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="page.html">Search Playlist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="addPlaylist.html">Add Playlist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+    </nav>
+    <p style="padding:10px;"></p>
+    <div class="container-fluid">
+    <!-- <form action="" target="_self" method="get"> -->
+        <form class="form-inline" action="#" style="align-self: center;">
+            <label for="email2" class="mb-2 mr-sm-2"></label>
+            <input type="text" class="form-control mb-2 mr-sm-2" id="name" placeholder="Masukkan Nama Playlist" name="name">
+            <button onclick="showHideTabel();"type="submit" class="btn btn-primary mb-2" style="background-color:#45a04e; border-color: #45a04e;">Submit</button>
+        </form>
+        <p style="padding:10px"></p>
+        <!-- <div class="container">
+                
+                <div class="card-columns">
+                  <div class="card bg-primary">
+                    <div class="card-body text-center">
+                      <p class="card-text">Playlist 1</p>
+                    </div>
+                  </div>
+                  <div class="card bg-warning">
+                    <div class="card-body text-center">
+                      <p class="card-text">Playlist 2</p>
+                    </div>
+                  </div>
+                  <div class="card bg-success">
+                    <div class="card-body text-center">
+                      <p class="card-text">Playlist 3</p>
+                    </div>
+                  </div>
+                  <div class="card bg-danger">
+                    <div class="card-body text-center">
+                      <p class="card-text">Playlist 4</p>
+                    </div>
+                  </div>  
+                  <div class="card bg-light">
+                    <div class="card-body text-center">
+                      <p class="card-text">Playlist 5</p>
+                    </div>
+                  </div>
+                  <div class="card bg-info">
+                    <div class="card-body text-center">
+                      <p class="card-text">Playlist 6 </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div> -->
+        <table class="table table-hover table-striped" style="width:50%; " id="tabelPlaylist"> 
+            <thead>
+              <tr>
+                <th>Nama Playlist</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John</td>
+              </tr>
+              <tr>
+                <td>Mary</td>
+              </tr>
+              <tr>
+                <td>July</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-hover table-striped" style="width:50%; visibility:hidden;" id="tabel-hasil-search"> 
+                <thead>
+                  <tr>
+                    <th>Nama Playlist</th>
+                    <th>Lagu</th>
+                    <th>Artis</th>
+                    <th>Detail Video</th>
+                    <th>Detail Lagu</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3">John</td>
+                    <td>lalalala</td>
+                    <td>Audi</td>
+                    <td><button type="submit" class="btn btn-danger btn-sm">Detail Music Video</button> </td>
+                    <td><button type="submit" class="btn btn-success btn-sm">Dengarkan Lagu</button></td>
+                  </tr>
+                  <tr>
+                    <td>lilili</td>
+                    <td>Audi</td>
+                    <td><button type="submit" class="btn btn-danger btn-sm">Detail Music Video</button> </td>
+                    <td><button type="submit" class="btn btn-success btn-sm">Dengarkan Lagu</button></td>
+                  </tr>
+                  <tr>
+                    <td>lulululul</td>
+                    <td>Audi</td>
+                    <td><button type="submit" class="btn btn-danger btn-sm">Detail Music Video</button> </td>
+                    <td><button type="submit" class="btn btn-success btn-sm">Dengarkan Lagu</button></td>
+                  </tr>
+                </tbody>
+              </table>
+    </div>
+    
+    
 
         <!-- tabel hasil pencarian -->
         <table class="tabBuku" id="tabelBuku" style="display: none">
@@ -57,6 +168,6 @@
         <tbody id="tabbodyjurnal"></tbody>
         </table>
 
-    </div>
+
 </body>
 </html>

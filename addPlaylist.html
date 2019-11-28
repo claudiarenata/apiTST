@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" href="page.css">
+
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script src="addPlaylist.js"></script>
+  
+
+<head>
+    <title>Spy</title>
+</head>
+
+<body>
+
+    <div class="jumbotron text-center" style="margin-bottom:0; background-color:#45a04e;">
+        <h1 style="color:white; font-size:60px;">Spy</h1>
+        <p style="color:white; font-size:20px;">Cari Lagu dan Video Kesukaanmu</p> 
+    </div>
+    
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link" href="page.html">Search Playlist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Add Playlist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+    </nav>
+    <p style="padding:10px;"></p>
+    <div class="col-md-12">
+    <h3> Tambah Playlist Kamu Disini!</h3>
+    <p style="padding:5px"></p>
+    <!-- Text input-->
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="action_id">Nama Playlist</label>  
+        <div class="col-md-5">
+        <input id="action_id" name="action_id" type="text" placeholder="Isi Nama Playlist yang Kamu Inginkan" class="form-control input-md">
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12">
+            <div class="col-md-12" >
+                
+                <div id="field">
+                <div id="field0">
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="action_name">Judul Lagu</label>  
+  <div class="col-md-5">
+  <input id="action_name" name="action_name" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+<div class="form-group">
+        <label class="col-md-4 control-label" for="action_artis">Artis</label>  
+        <div class="col-md-5">
+        <input id="action_name" name="action_artis" type="text" placeholder="" class="form-control input-md">
+          
+        </div>
+      </div>
+<br>
+
+
+
+</div>
+</div>
+<!-- Button -->
+<div class="form-group">
+  <div class="col-md-4">
+    <button id="add-more" name="add-more" class="btn btn-primary">Add More</button>
+  </div>
+</div>
+<br>
+<div class="form-group">
+        <div class="col-md-4">
+                <button type="submit" class="btn btn-primary mb-2" style="background-color:#45a04e; border-color: #45a04e;">Submit</button>
+        </div>
+      </div>
+      <br><br>
+              
+            </div>
+        </div>
+    </div>
+	
+</body>
+</html>

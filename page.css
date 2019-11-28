@@ -8,12 +8,13 @@ body {
 }
 
 .header {
-  border: 2px solid DodgerBlue;
-  background-color:DodgerBlue;
+  border: 2px solid #45a04e;
+  background-color:#45a04e;
   padding: 15px;
   columns: #000000;;
   margin-top:0;
   margin-bottom:0;
+  color:white;
 }
 
 /* Style the tab */
