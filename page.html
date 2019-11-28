@@ -8,42 +8,24 @@
 <script src="jquery.cookie.js"></script>
 
 <head>
-    <title>E-library ITB</title>
+    <title>Spy</title>
 </head>
 
 <body>
 
-    <h1 class="header">
-        <img src="logo-itb-512px.png" width="60" height="60" alt="logo itb"></img>
-        <p class="judul"> UPT Perpustakaan ITB </p>
-    </h1>
+    <h1 class="judul"> Spy - Cari Lagu dan Video Kesukaanmu!</h1>
 
-    <div class="tab" style="display: inline-flexbox;">
-        <button class="tablinks" onclick="openTable(event, 'Search')">Search</button>
-        <button class="tablinks" onclick="openTable(event, 'Contact')">Contact</button>
-        <button href="#" class="notification" id="notif" style="background-color: dodgerblue;">Notification</button>
-    </div>
-
+    <p style="padding:30px"></p>
+   
+    <div class="container">
     <!-- <form action="" target="_self" method="get"> -->
-    <p padding: 10px></p>
-    <div id="Search" class="tabcontent">
-        <fieldset id="corners">
-            <legend>Search</legend>
-            <div class="topnav">
-                <form method="GET" action="#">
-                    <p padding: 20px></p>
-                    Judul : <input class="topnav" type="text" placeholder="Mencari Berdasarkan Judul..." name="judul" id="judul" style="float: left;"><br>
-                    <p padding: 20px></p>
-                    <!-- Pengarang : <input class="topnav" type="text" placeholder="Mencari Berdasarkan Pengarang..." name="author" id="author" style="float: left"><br>
-                    <p padding: 10px></p> -->
-                    <select style="width: 100px;" id="bookjurnal">
-                        <option value="book">Book</option>
-                        <option value="jurnal">Jurnal</option>
-                    </select><br>
-                    <button id="cariData" onclick="showtabel()" style="width: 50px; height: 30px;">submit</button>
-                </form>
-            </div><br>
-        </fieldset>
+        <form action="/action_page.php">
+            <label for="keyword"><h3>Cari Playlist</h3></label>
+            <input type="text" id="keyword" name="keyword" placeholder="Ketik playlist yang kamu mau..">
+          
+            <input type="submit" value="Submit">
+          </form>
+    </div>
         <!-- </form> -->
 
         <!-- tabel hasil pencarian -->

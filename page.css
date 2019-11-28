@@ -5,15 +5,13 @@ body {
 /* header & judul UPT Perpustakaan ITB */
 .judul {
   position: absolute;
-  top: 20px;
-  left: 115px;
 }
 
 .header {
   border: 2px solid DodgerBlue;
   background-color:DodgerBlue;
   padding: 15px;
-  color:#FFFFFF;
+  columns: #000000;;
   margin-top:0;
   margin-bottom:0;
 }
@@ -174,3 +172,31 @@ input[type=text], select {
   background-color: red;
   color: white;
 } */
+
+/* Style inputs */
+input[type=text], select {
+  width: 100%;
+  padding: 12px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Add a background color to the submit button on mouse-over */
+input[type=submit]:hover {
+  background-color: #45a049;
+}
