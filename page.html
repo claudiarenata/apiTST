@@ -87,7 +87,7 @@
               <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button onclick="hideModal();" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -96,4 +96,9 @@
 
 
 </body>
+<script>
+function hideModal(){
+  document.getElementById('video-modal').style.display='none'; 
+};
+</script>
 </html>

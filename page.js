@@ -71,7 +71,7 @@ $(document).ready(function() {
                         "<tr>" +
                             "<td>"+value.songsName+"</td>\n"+
                             "<td>"+value.songsArtist+"</td>\n"+
-                            "<td><button id='vidbtn' onclick=\"openvid('"+value.songsName+"','"+value.songsArtist+"'); showModal(); \">youtube</button>" + "</th>\n" +
+                            "<td><button id='vidbtn' onclick=\"showModal('"+value.songsName+"','"+value.songsArtist+"');\">youtube</button>" + "</th>\n" +
                             "<td><a id='songbtn' href='"+ value.songsURL +"' >spotify</a>" + "</th>\n" +
                         "</tr>";
                 });
@@ -84,13 +84,16 @@ $(document).ready(function() {
     });
 });
 
-function openvid(a, b){
-    var lagu = a;
+function showModal(a, b){
+    document.getElementById('video-modal').style.display='block'; 
+
+    var judul = a;
     var artis = b;
     $.ajax({
         type : 'GET', 
-        url :"http://127.0.0.1:5000/api/youtubesearch="+lagu+" "+artis, 
-        dataType : 'json', 
+        url :"http://127.0.0.1:5000/api/youtubesearch="+judul+" "+artis, 
+        dataType : 'json',
+        crossDomain: true, 
         contentType: 'application/json',
         success : function(response) {
             content = '';
@@ -103,8 +106,4 @@ function openvid(a, b){
             console.log(response); 
         }
     });
-};
-
-function showModal(){
-    document.getElementById('video-modal').style.display='block'; 
 }
