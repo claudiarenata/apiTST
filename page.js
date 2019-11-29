@@ -71,7 +71,7 @@ $(document).ready(function() {
                         "<tr>" +
                             "<td>"+value.songsName+"</td>\n"+
                             "<td>"+value.songsArtist+"</td>\n"+
-                            "<td><button id='vidbtn' onclick=\"openvid('"+value.songsName+"','"+value.songsArtist+"')\">youtube</button>" + "</th>\n" +
+                            "<td><button id='vidbtn' onclick=\"openvid('"+value.songsName+"','"+value.songsArtist+"'); showModal(); \">youtube</button>" + "</th>\n" +
                             "<td><a id='songbtn' href='"+ value.songsURL +"' >spotify</a>" + "</th>\n" +
                         "</tr>";
                 });
@@ -100,3 +100,7 @@ function openvid(a, b){
         }
     });
 };
+
+function showModal(){
+    document.getElementById('video-modal').style.display='block'; 
+}
