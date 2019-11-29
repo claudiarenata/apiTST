@@ -29,144 +29,70 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="page.html">Search Playlist</a>
+              <a class="nav-link tablinks" href="page.html" id="searchp">Search Playlist</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="addPlaylist.html">Add Playlist</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
+              <a class="nav-link tablinks" href="addPlaylist.html" onclick="openTable(event, 'tabel-hasil-search')" id="addp">Add Playlist</a>
             </li>
           </ul>
     </nav>
+
     <p style="padding:10px;"></p>
     <div class="container-fluid">
-    <!-- <form action="" target="_self" method="get"> -->
-        <form class="form-inline" action="#" style="align-self: center;">
+        <form class="form-inline" action="#" style="align-self: center;" method="GET">
             <label for="email2" class="mb-2 mr-sm-2"></label>
             <input type="text" class="form-control mb-2 mr-sm-2" id="name" placeholder="Masukkan Nama Playlist" name="name">
-            <button onclick="showHideTabel();"type="submit" class="btn btn-primary mb-2" style="background-color:#45a04e; border-color: #45a04e;">Submit</button>
+            <button onclick="showHideTabel();" id="caridata" type="submit" class="btn btn-primary mb-2" style="background-color:#45a04e; border-color: #45a04e;">Submit</button>
         </form>
         <p style="padding:10px"></p>
-        <!-- <div class="container">
-                
-                <div class="card-columns">
-                  <div class="card bg-primary">
-                    <div class="card-body text-center">
-                      <p class="card-text">Playlist 1</p>
-                    </div>
-                  </div>
-                  <div class="card bg-warning">
-                    <div class="card-body text-center">
-                      <p class="card-text">Playlist 2</p>
-                    </div>
-                  </div>
-                  <div class="card bg-success">
-                    <div class="card-body text-center">
-                      <p class="card-text">Playlist 3</p>
-                    </div>
-                  </div>
-                  <div class="card bg-danger">
-                    <div class="card-body text-center">
-                      <p class="card-text">Playlist 4</p>
-                    </div>
-                  </div>  
-                  <div class="card bg-light">
-                    <div class="card-body text-center">
-                      <p class="card-text">Playlist 5</p>
-                    </div>
-                  </div>
-                  <div class="card bg-info">
-                    <div class="card-body text-center">
-                      <p class="card-text">Playlist 6 </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </div> -->
-        <table class="table table-hover table-striped" style="width:50%; " id="tabelPlaylist"> 
-            <thead>
+        
+        <div id="tabelPlaylist">
+          <table class="table table-hover table-striped" style="width:50%;" id="tabelp"> 
+            <thead id="theadplaylist">
               <tr>
-                <th>Nama Playlist</th>
+                <th>Daftar Playlist (click me!)</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>John</td>
-              </tr>
-              <tr>
-                <td>Mary</td>
-              </tr>
-              <tr>
-                <td>July</td>
-              </tr>
+            <tbody id="tbodyplaylist">
             </tbody>
           </table>
-
-          <table class="table table-hover table-striped" style="width:50%; visibility:hidden;" id="tabel-hasil-search"> 
-                <thead>
-                  <tr>
-                    <th>Nama Playlist</th>
-                    <th>Lagu</th>
-                    <th>Artis</th>
-                    <th>Detail Video</th>
-                    <th>Detail Lagu</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td rowspan="3">John</td>
-                    <td>lalalala</td>
-                    <td>Audi</td>
-                    <td><button type="submit" class="btn btn-danger btn-sm">Detail Music Video</button> </td>
-                    <td><button type="submit" class="btn btn-success btn-sm">Dengarkan Lagu</button></td>
-                  </tr>
-                  <tr>
-                    <td>lilili</td>
-                    <td>Audi</td>
-                    <td><button type="submit" class="btn btn-danger btn-sm">Detail Music Video</button> </td>
-                    <td><button type="submit" class="btn btn-success btn-sm">Dengarkan Lagu</button></td>
-                  </tr>
-                  <tr>
-                    <td>lulululul</td>
-                    <td>Audi</td>
-                    <td><button type="submit" class="btn btn-danger btn-sm">Detail Music Video</button> </td>
-                    <td><button type="submit" class="btn btn-success btn-sm">Dengarkan Lagu</button></td>
-                  </tr>
-                </tbody>
-              </table>
-    </div>
-    
-    
-
-        <!-- tabel hasil pencarian -->
-        <table class="tabBuku" id="tabelBuku" style="display: none">
-            <thead id="tabheadbuku">
-                <tr>
-                    <th>ISBN</th>
-                    <th>Judul</th>
-                    <th>Pengarang</th>
-                    <th>Penerbit</th>
-                    <th>Tahun Terbit</th>
-                    <th>Kategori</th>
-                    <th>Stok</th>
-                <tr>
+        </div>
+        
+        <div id="tabelSearch" class="tabcontent">
+          <table class="table table-hover table-striped" style="width:50%;" id="tabel-hasil-search">
+            <thead id="theadsearch">
+              <tr>
+                <!-- <th>Nama Playlist</th> -->
+                <th>Lagu</th>
+                <th>Artis</th>
+                <th>Lihat Video</th>
+                <th>Lihat Lagu</th>
+              </tr>
             </thead>
-            <tbody id="tabbodybuku"></tbody>
-        </table>
-        <table class="tabBuku" id="tabelJurnal" style="display: none">
-        <thead id="tabheadjurnal">
-            <tr>
-                <th>ID Jurnal</th>
-                <th>Judul</th>
-                <th>Pengarang</th>
-                <th>Tahun Terbit</th>
-                <th>Kategori</th>
-                <th>Stok</th>
-            <tr>
-        </thead>
-        <tbody id="tabbodyjurnal"></tbody>
-        </table>
+            <tbody id="tbodysearch">
+              <!-- <tr>
+                <td rowspan="3">John</td>
+                <td>lalalala</td>
+                <td>Audi</td>
+                <td><button type="submit" class="btn btn-danger btn-sm">Detail Music Video</button> </td>
+                <td><button type="submit" class="btn btn-success btn-sm">Dengarkan Lagu</button></td>
+              </tr>
+              <tr>
+                <td>lilili</td>
+                <td>Audi</td>
+                <td><button type="submit" class="btn btn-danger btn-sm">Detail Music Video</button> </td>
+                <td><button type="submit" class="btn btn-success btn-sm">Dengarkan Lagu</button></td>
+              </tr>
+              <tr>
+                <td>lulululul</td>
+                <td>Audi</td>
+                <td><button type="submit" class="btn btn-danger btn-sm">Detail Music Video</button> </td>
+                <td><button type="submit" class="btn btn-success btn-sm">Dengarkan Lagu</button></td>
+              </tr> -->
+            </tbody>
+          </table>
+      </div>
+    </div>
 
 
 </body>

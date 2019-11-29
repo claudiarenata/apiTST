@@ -10,8 +10,10 @@ from flask import Flask, jsonify, request
 from flaskext.mysql import MySQL
 from spotipy.oauth2 import SpotifyClientCredentials
 from pytube import YouTube
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 mysql = MySQL()
 app.config['DEBUG'] = True
 
@@ -137,11 +139,11 @@ def allplaylist():
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM playlist")
     pList = cursor.fetchall()
-    resplaylist = []
-    for x in pList :
-        resplaylist.append(x[1])
+    # resplaylist = []
+    # for x in pList :
+    #     resplaylist.append(x[1])
     response = {
-        'playlistName' : resplaylist
+        'playlist' : pList
     }
     return jsonify(response)
     conn.close()
@@ -206,11 +208,10 @@ api_key = "AIzaSyAKkGJ78S330UDgvqQ6E04hmhCTGNygf7Q"
 
 def youtubeSearch(keyword): 
     try : 
-        url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=relevance&q="+keyword.replace(" ", "%20")+"&key="+api_key
+        url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q="+keyword.replace(" ", "%20")+"&key="+api_key
         json_url= urllib.request.urlopen(url)
         data = json.loads(json_url.read())
         res = []
-        # hasil = []
         
         for item in data['items'] : 
             result  = {
@@ -224,7 +225,7 @@ def youtubeSearch(keyword):
         req = "Video Not Found."
         return req
 
-@app.route('/api/ytubesearch', methods=['GET'])
+@app.route('/api/youtubesearch', methods=['GET'])
 def index():
     masukkan = request.args.get('keyword')
     return youtubeSearch(masukkan)
