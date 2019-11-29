@@ -26,6 +26,10 @@ function openTable(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
+function hideModal(){
+    document.getElementById('video-modal').style.display='none'; 
+};
+
 // AJAX
 $(document).ready(function() {
     $("#theadplaylist").click(function(e) {
@@ -85,22 +89,31 @@ $(document).ready(function() {
 });
 
 function showModal(a, b){
-    document.getElementById('video-modal').style.display='block'; 
+    document.getElementById('video-modal').style.display='block';
+
+    document.getElementById('judullagu').value = a;
+    document.getElementById('linklaguvid').value = b;
 
     var judul = a;
     var artis = b;
+    var tabmodiv = document.getElementById('tbodyvideo');
     $.ajax({
         type : 'GET', 
-        url :"http://127.0.0.1:5000/api/youtubesearch="+judul+" "+artis, 
+        url :"http://127.0.0.1:5000/api/youtubesearch?keyword="+judul+" "+artis, 
         dataType : 'json',
         crossDomain: true, 
         contentType: 'application/json',
         success : function(response) {
+            console.log(response);
             content = '';
             $.each(response, function(key, value) {
-                content += value[2];
-                    
+                content+=
+                    "<tr>" +
+                        "<td>"+value.title+"</td>\n"+
+                        "<td><a href='"+value.url+"' target='_blank' >links</a>" +"</td>\n"+
+                    "</tr>";
             });
+            tabmodiv.innerHTML = content;
         }, 
         error : function(response) {
             console.log(response); 
