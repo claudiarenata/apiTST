@@ -93,7 +93,11 @@ function openvid(a, b){
         dataType : 'json', 
         contentType: 'application/json',
         success : function(response) {
-            
+            content = '';
+            $.each(response, function(key, value) {
+                content += value[2];
+                    
+            });
         }, 
         error : function(response) {
             console.log(response); 

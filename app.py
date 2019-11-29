@@ -13,6 +13,7 @@ from pytube import YouTube
 from flask_cors import CORS
 
 app = Flask(__name__)
+# cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 CORS(app)
 mysql = MySQL()
 app.config['DEBUG'] = True
@@ -20,7 +21,7 @@ app.config['DEBUG'] = True
 # configure db mysql #
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
+app.config['MYSQL_DATABASE_PASSWORD'] = 'adiera'
 app.config['MYSQL_DATABASE_DB'] = 'playlist'
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 mysql.init_app(app)
@@ -208,16 +209,16 @@ api_key = "AIzaSyAKkGJ78S330UDgvqQ6E04hmhCTGNygf7Q"
 
 def youtubeSearch(keyword): 
     try : 
-        url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q="+keyword.replace(" ", "%20")+"&key="+api_key
+        url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=relevance&q="+keyword.replace(" ", "%20")+"&key="+api_key
         json_url= urllib.request.urlopen(url)
         data = json.loads(json_url.read())
         res = []
         
         for item in data['items'] : 
             result  = {
-                'url' : "https://m.youtube.com/watch?v="+item['id']['videoId'],
                 'title' : item['snippet']['title'], 
-                'publishedAt' : item['snippet']['publishedAt']
+                'publishedAt' : item['snippet']['publishedAt'],
+                'url' : "https://m.youtube.com/watch?v="+item['id']['videoId']
             }
             res.append(result)
         return jsonify(res)

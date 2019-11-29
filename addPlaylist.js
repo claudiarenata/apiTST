@@ -14,58 +14,28 @@ $(document).ready(function () {
         $(addRemove).after(removeButton);
         $("#field" + next).attr('data-source',$(addto).attr('data-source'));
         $("#count").val(next);  
-        
-            $('.remove-me').click(function(e){
-                e.preventDefault();
-                var fieldNum = this.id.charAt(this.id.length-1);
-                var fieldID = "#field" + fieldNum;
-                $(this).remove();
-                $(fieldID).remove();
-            });
+        $('.remove-me').click(function(e){
+            e.preventDefault();
+            var fieldNum = this.id.charAt(this.id.length-1);
+            var fieldID = "#field" + fieldNum;
+            $(this).remove();
+            $(fieldID).remove();
+        });
     });
 
-});
-
-// $("#formbuku").submit(function(event) {
-
-//     /* stop form from submitting normally */
-//     event.preventDefault();
-
-//     /* get the action attribute from the <form action=""> element */
-//     var $form = $( this ),
-//       url = $form.attr( 'action' );
-
-//   /* Send the data using post with element id name and name2*/
-//     var posting = $.post( url, { 
-//         ISBN: $('#ISBN').val(), 
-//         Judul_Buku: $('#judul').val(), 
-//         Pengarang: $('#Pengarang').val(),
-//         Penerbit: $('#Penerbit').val(), 
-//         Tahun_Terbit : $('#Tahun').val(), 
-//         Kategori : $('#Kategori').val(), 
-//         Sinopsis : $('#sinopsis').val(), 
-//         Stok_Buku :$('#Stok_Buku').val()   }
-//         );
-
-//     /* Alerts the results */
-//     posting.done(function( data ) {
-//         alert(data['message']);
-//         location.reload();
-//     });
-// });
-
-$().ready(function(){
     $('#submit-btn').on('click',function(e) {
         e.preventDefault();
         var newPlaylist = {
             'playlistName' : document.getElementById('action_id').value,
-            'songsName': document.getElementById('action_name').value,
-            'songsArtist' : document.getElementById('action_artis').value
-        };
-        console.log(newPlaylist); 
-    
+            'songs' : {
+                'songsName': document.getElementById('action_name').value,
+                'songsArtist' : document.getElementById('action_artis').value
+            }  
+        }
+        console.log(newPlaylist);
         $.ajax({
-            url: '/api/playlist',
+            url: 'http://127.0.0.1:5000/api/playlist',
+            crossDomain: true,
             data: $('form').serialize(),
             type: 'POST',
             success: function(response) {
@@ -76,3 +46,4 @@ $().ready(function(){
             }
         });
     });
+});
