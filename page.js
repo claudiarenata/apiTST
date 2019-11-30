@@ -104,7 +104,7 @@ function showModal(a, b){
         crossDomain: true, 
         contentType: 'application/json',
         success : function(response) {
-            console.log(response);
+            // console.log(response);
             content = '';
             $.each(response, function(key, value) {
                 content+=
