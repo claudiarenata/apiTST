@@ -23,9 +23,39 @@ $(document).ready(function () {
         });
     });
 
-    $('#submit-btn').on('click',function(e) {
-        e.preventDefault();
+});
+
+// $("#formbuku").submit(function(event) {
+
+//     /* stop form from submitting normally */
+//     event.preventDefault();
+
+//     /* get the action attribute from the <form action=""> element */
+//     var $form = $( this ),
+//       url = $form.attr( 'action' );
+
+//   /* Send the data using post with element id name and name2*/
+//     var posting = $.post( url, { 
+//         ISBN: $('#ISBN').val(), 
+//         Judul_Buku: $('#judul').val(), 
+//         Pengarang: $('#Pengarang').val(),
+//         Penerbit: $('#Penerbit').val(), 
+//         Tahun_Terbit : $('#Tahun').val(), 
+//         Kategori : $('#Kategori').val(), 
+//         Sinopsis : $('#sinopsis').val(), 
+//         Stok_Buku :$('#Stok_Buku').val()   }
+//         );
+
+//     /* Alerts the results */
+//     posting.done(function( data ) {
+//         alert(data['message']);
+//         location.reload();
+//     });
+// });
+
+function addPlaylist(){
         var newPlaylist = {
+<<<<<<< HEAD
             'playlistName' : document.getElementById('action_id').value,
             'songs' : [{
                 'songsName': document.getElementById('action_name').value,
@@ -33,17 +63,38 @@ $(document).ready(function () {
             }]
         }
         console.log(newPlaylist);
+=======
+            'playlistName' : $('#action_id').val(),
+            'songs' : {
+                'songsName': $('#action_name').val(),
+                'songsArtist': $('#action_artis').val()
+            }
+        };
+        console.log(newPlaylist); 
+
+            
+>>>>>>> 4be4aff9da7e7c05ab4d03ec0e87967ee8f7e35f
         $.ajax({
-            url: 'http://127.0.0.1:5000/api/playlist',
-            crossDomain: true,
-            data: $('form').serialize(),
+            url: 'http://3.83.203.203:6001/api/playlist',
+            data: JSON.stringify(newPlaylist),
             type: 'POST',
+            datatype:'json',
+            contentType: "application/json; charset=utf-8",
+            crossDomain:true,
+            xhrFields: {
+                withCredentials: true
+             },
             success: function(response) {
-                console.log(response);
+                alert('Berhasil Menambahkan Playlist');
             },
             error: function(error) {
-                console.log(error);
+                alert(error);
             }
         });
-    });
-});
+}
+
+$(document).ready(function() {
+    $("#submit-btn").on("click",function(){
+        addPlaylist();
+    })
+})
