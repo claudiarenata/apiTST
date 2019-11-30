@@ -65,7 +65,7 @@ function addPlaylist(){
 
             
         $.ajax({
-            url: 'http://3.83.203.203:6001/api/playlist',
+            url: 'http://3.210.119.72:6002/api/playlist',
             data: JSON.stringify(newPlaylist),
             type: 'POST',
             datatype:'json',
