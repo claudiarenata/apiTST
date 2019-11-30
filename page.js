@@ -48,6 +48,7 @@ $(document).ready(function() {
                         "<tr>" +
                             "<td>"+value[1]+"</td>\n"+
                         "</tr>";
+                    console.log(Headers);
                   });
               });
               tabmodiv.innerHTML = content;

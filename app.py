@@ -18,7 +18,6 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type, auth'
 app.config['CORS_RESOURCES'] = {r"/apis/*":{"origins":"*"}}
 app.config['CORS_METHODS'] = "GET,POST,OPTIONS"
-app.config['CORS_SUPPORTS_CREDENTIALS'] = True
 
 
 mysql = MySQL()
@@ -27,7 +26,7 @@ app.config['DEBUG'] = True
 # configure db mysql #
 app.config['MYSQL_DATABASE_HOST'] = '3.210.119.72'
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
+app.config['MYSQL_DATABASE_PASSWORD'] = 'mysql'
 app.config['MYSQL_DATABASE_DB'] = 'playlist'
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 mysql.init_app(app)
