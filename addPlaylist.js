@@ -54,26 +54,48 @@ $(document).ready(function () {
 //     });
 // });
 
-$().ready(function(){
-    $('#submit-btn').on('click',function(e) {
-        e.preventDefault();
+function addPlaylist(){
         var newPlaylist = {
-            'playlistName' : document.getElementById('action_id').value,
-            'songsName': document.getElementById('action_name').value,
-            'songsArtist' : document.getElementById('action_artis').value
+            'playlistName' : $('#action_id').val(),
+            'songsName': $('#action_name').val(),
+            'songsArtist' : $('#action_artis').val()
         };
         console.log(newPlaylist); 
+
+        // var postBody = {
+        //     "title" : $("#nama-jadwal").val(),
+        //     "description" : $("#deskripsi-kegiatan").val(),
+        //     "tglMulai" : new Date($("#tanggal-mulai").val()),
+        //     "tglSelesai" : new Date($("#tanggal-selesai").val()),
+        //     "allowedLevels" : [
+        //         $("#program").val()
+        //     ],
+        //     "allowedDepartments" : [
+        //         $("#fakultas").val()
+        //     ]
+        // }
     
         $.ajax({
-            url: '/api/playlist',
-            data: $('form').serialize(),
+            url: 'http://127.0.0.1:5000/api/playlist',
+            data: JSON.stringify(newPlaylist),
             type: 'POST',
+            datatype:'json',
+            contentType: "application/json; charset=utf-8",
+            crossDomain:true,
+            xhrFields: {
+                withCredentials: true
+             },
             success: function(response) {
-                console.log(response);
+                alert('Berhasil Menambahkan Playlist');
             },
             error: function(error) {
-                console.log(error);
+                alert(error);
             }
         });
-    });
-});
+}
+
+$(document).ready(function() {
+    $("#submit-btn").on("click",function(){
+        addPlaylist();
+    })
+})
