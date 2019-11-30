@@ -26,6 +26,10 @@ function openTable(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
+function hideModal(){
+    document.getElementById('video-modal').style.display='none'; 
+};
+
 // AJAX
 $(document).ready(function() {
     $("#theadplaylist").click(function(e) {
@@ -71,7 +75,7 @@ $(document).ready(function() {
                         "<tr>" +
                             "<td>"+value.songsName+"</td>\n"+
                             "<td>"+value.songsArtist+"</td>\n"+
-                            "<td><button id='vidbtn' onclick=\"openvid('"+value.songsName+"','"+value.songsArtist+"'); showModal(); \">youtube</button>" + "</th>\n" +
+                            "<td><button id='vidbtn' onclick=\"showModal('"+value.songsName+"','"+value.songsArtist+"');\">youtube</button>" + "</th>\n" +
                             "<td><a id='songbtn' href='"+ value.songsURL +"' >spotify</a>" + "</th>\n" +
                         "</tr>";
                 });
@@ -84,23 +88,34 @@ $(document).ready(function() {
     });
 });
 
-function openvid(a, b){
-    var lagu = a;
+function showModal(a, b){
+    document.getElementById('video-modal').style.display='block';
+
+    document.getElementById('judullagu').value = a;
+    document.getElementById('linklaguvid').value = b;
+
+    var judul = a;
     var artis = b;
+    var tabmodiv = document.getElementById('tbodyvideo');
     $.ajax({
         type : 'GET', 
         url :"http://3.83.203.203:6001/api/youtubesearch="+lagu+" "+artis, 
         dataType : 'json', 
         contentType: 'application/json',
         success : function(response) {
-            
+            console.log(response);
+            content = '';
+            $.each(response, function(key, value) {
+                content+=
+                    "<tr>" +
+                        "<td>"+value.title+"</td>\n"+
+                        "<td><a href='"+value.url+"' target='_blank' >links</a>" +"</td>\n"+
+                    "</tr>";
+            });
+            tabmodiv.innerHTML = content;
         }, 
         error : function(response) {
             console.log(response); 
         }
     });
-};
-
-function showModal(){
-    document.getElementById('video-modal').style.display='block'; 
 }
