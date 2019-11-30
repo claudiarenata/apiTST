@@ -57,26 +57,16 @@ $(document).ready(function () {
 function addPlaylist(){
         var newPlaylist = {
             'playlistName' : $('#action_id').val(),
-            'songsName': $('#action_name').val(),
-            'songsArtist' : $('#action_artis').val()
+            'songs' : {
+                'songsName': $('#action_name').val(),
+                'songsArtist': $('#action_artis').val()
+            }
         };
         console.log(newPlaylist); 
 
-        // var postBody = {
-        //     "title" : $("#nama-jadwal").val(),
-        //     "description" : $("#deskripsi-kegiatan").val(),
-        //     "tglMulai" : new Date($("#tanggal-mulai").val()),
-        //     "tglSelesai" : new Date($("#tanggal-selesai").val()),
-        //     "allowedLevels" : [
-        //         $("#program").val()
-        //     ],
-        //     "allowedDepartments" : [
-        //         $("#fakultas").val()
-        //     ]
-        // }
-    
+            
         $.ajax({
-            url: 'http://127.0.0.1:5000/api/playlist',
+            url: 'http://3.83.203.203:6001/api/playlist',
             data: JSON.stringify(newPlaylist),
             type: 'POST',
             datatype:'json',
