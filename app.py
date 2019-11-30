@@ -11,11 +11,6 @@ from flaskext.mysql import MySQL
 from spotipy.oauth2 import SpotifyClientCredentials
 from pytube import YouTube
 from flask_cors import CORS, cross_origin
-<<<<<<< HEAD
-
-app = Flask(__name__)
-CORS(app)
-=======
 
 
 app = Flask(__name__)
@@ -26,7 +21,6 @@ app.config['CORS_METHODS'] = "GET,POST,OPTIONS"
 app.config['CORS_SUPPORTS_CREDENTIALS'] = True
 
 
->>>>>>> 4be4aff9da7e7c05ab4d03ec0e87967ee8f7e35f
 mysql = MySQL()
 app.config['DEBUG'] = True
 
@@ -134,9 +128,6 @@ def songs():
     finally:
         conn.close()
         cursor.close()
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     return jsonify(response)
 
 # read playlist saved in database #
