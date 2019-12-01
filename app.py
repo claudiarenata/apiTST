@@ -14,7 +14,7 @@ from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
-cors = CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
+cors = CORS(app, supports_credentials=True)
 app.config['CORS_HEADERS'] = 'content-type'
 app.config['CORS_RESOURCES'] = '*'
 app.config['CORS_METHODS'] = "GET,POST,OPTIONS"
@@ -45,7 +45,6 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Credentials', 'true')
-    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 # get data from spotify #
