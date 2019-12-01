@@ -51,7 +51,7 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # get data from spotify #
 @app.route('/api/playlist', methods=['POST', 'OPTIONS'])
-@cross_origin
+@cross_origin()
 def songs():
     global conn, cursor
     try:
@@ -111,7 +111,7 @@ def songs():
 
 # read playlist saved in database #
 @app.route('/api/playlist', methods=['GET'])
-@cross_origin
+@cross_origin()
 def playlist():
     global conn, cursor
     try:
@@ -149,7 +149,7 @@ def playlist():
 
 # get all playlist in database
 @app.route('/api/allplaylist', methods=['GET'])
-@cross_origin
+@cross_origin()
 def allplaylist():
     global conn, cursor
     conn = mysql.connect()
@@ -168,7 +168,7 @@ def allplaylist():
 
 # delete playlist data #
 @app.route('/api/playlist', methods=['DELETE'])
-@cross_origin
+@cross_origin()
 def delete():
     global cursor, conn
     try:
@@ -201,7 +201,7 @@ def delete():
 
 # show charts of songs/artists from database #
 @app.route('/api/charts', methods=['GET'])
-@cross_origin
+@cross_origin()
 def charts():
     global conn, cursor
     try:
@@ -245,7 +245,7 @@ def youtubeSearch(keyword):
         return req
 
 @app.route('/api/youtubesearch', methods=['GET'])
-@cross_origin
+@cross_origin()
 def index():
     masukkan = request.args.get('keyword')
     return youtubeSearch(masukkan)
