@@ -15,8 +15,8 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type, auth'
-app.config['CORS_RESOURCES'] = {r"/apis/*":{"origins":"*"}}
+app.config['CORS_HEADERS'] = 'Content-Type'
+# app.config['CORS_RESOURCES'] = {r"/apis/*":{"origins":"*"}}
 app.config['CORS_METHODS'] = "GET,POST,OPTIONS"
 
 
@@ -24,7 +24,7 @@ mysql = MySQL()
 app.config['DEBUG'] = True
 
 # configure db mysql #
-app.config['MYSQL_DATABASE_HOST'] = '3.210.119.72'
+app.config['MYSQL_DATABASE_HOST'] = '34.230.47.220'
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'mysql'
 app.config['MYSQL_DATABASE_DB'] = 'playlist'
@@ -45,7 +45,7 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 @app.after_request
 def after_request(response):
   response.headers.add('Access-Control-Allow-Origin', '*')
-  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+#   response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
   response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
   return response
 
