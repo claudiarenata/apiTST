@@ -36,7 +36,7 @@ $(document).ready(function() {
         e.preventDefault();
         var tabmodiv = document.getElementById('tbodyplaylist');
         $.ajax({
-            url: 'http://3.83.203.203:6001/api/allplaylist',
+		url: 'http://54.164.251.124:6003/api/allplaylist',
             crossDomain: true,
             type:'GET',
             dataType: 'json',
@@ -63,7 +63,7 @@ $(document).ready(function() {
     $("#caridata").click(function(e) {
         e.preventDefault();
         var tabmodiv = document.getElementById('tbodysearch');
-        endpoint = 'http://3.210.119.72:6002/api/playlist?playlistName=';
+        endpoint = 'http://54.164.251.124:6003/api/playlist?playlistName=';
         $.ajax({
             url: endpoint + encodeURIComponent(document.getElementById('name').value),
             crossDomain: true,
@@ -100,7 +100,7 @@ function showModal(a, b){
     var tabmodiv = document.getElementById('tbodyvideo');
     $.ajax({
         type : 'GET', 
-        url :"http://3.210.119.72:6002/api/youtubesearch="+lagu+" "+artis, 
+        url :"http://54.164.251.124:6003/api/youtubesearch?keyword="+judul+" "+artis, 
         dataType : 'json', 
         contentType: 'application/json',
         success : function(response) {
