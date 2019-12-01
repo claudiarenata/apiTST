@@ -15,18 +15,18 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 cors = CORS(app)
-app.config['CORS_RESOURCES'] = {r"/apis/*":{"origins":"*"}}
+app.config['CORS_HEADERS'] = 'Content-Type'
+# app.config['CORS_RESOURCES'] = {r"/apis/*":{"origins":"*"}}
 app.config['CORS_METHODS'] = "GET,POST,OPTIONS"
-app.config['CORS_SUPPORTS_CREDENTIALS'] = True
 
 
 mysql = MySQL()
 app.config['DEBUG'] = True
 
 # configure db mysql #
-app.config['MYSQL_DATABASE_HOST'] = '3.210.119.72'
+app.config['MYSQL_DATABASE_HOST'] = '34.230.47.220'
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
+app.config['MYSQL_DATABASE_PASSWORD'] = 'mysql'
 app.config['MYSQL_DATABASE_DB'] = 'playlist'
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 mysql.init_app(app)
@@ -42,12 +42,12 @@ client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, clien
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 
-# @app.after_request
-# def after_request(response):
-#   response.headers.add('Access-Control-Allow-Origin', '*')
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
 #   response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-#   response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-#   return response
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  return response
 
 # get data from spotify #
 @app.route('/api/playlist', methods=['POST', 'OPTIONS'])
@@ -267,4 +267,4 @@ def index():
 
 # execute the app #
 if __name__ == '__main__':
-    app.run(threaded=True, host="", port=6001)
+    app.run(threaded=True, host="0.0.0.0", port=6001)

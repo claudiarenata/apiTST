@@ -41,6 +41,7 @@ $(document).ready(function() {
             type:'GET',
             dataType: 'json',
             success: function(response) {
+                console.log(Headers);
               content="";
               $.each(response, function(key, value){
                   $.each(value, function(key,value) {
@@ -103,7 +104,7 @@ function showModal(a, b){
         dataType : 'json', 
         contentType: 'application/json',
         success : function(response) {
-            console.log(response);
+            // console.log(response);
             content = '';
             $.each(response, function(key, value) {
                 content+=
