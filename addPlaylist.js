@@ -57,8 +57,8 @@ function addPlaylist(){
         var newPlaylist = {
             'playlistName' : document.getElementById('action_id').value,
             'songs' : [{
-                'songsName': document.getElementsByClassName('input-lagu').value,
-                'songsArtist' : document.getElementsByClassName('input-artis').value
+                'songsName': document.getElementsById('action_name').value,
+                'songsArtist' : document.getElementsById('action_artis').value
             }]
         }
         console.log(newPlaylist);
