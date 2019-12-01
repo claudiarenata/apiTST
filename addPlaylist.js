@@ -57,8 +57,8 @@ function addPlaylist(){
         var newPlaylist = {
             'playlistName' : document.getElementById('action_id').value,
             'songs' : [{
-                'songsName': document.getElementById('action_name').value,
-                'songsArtist' : document.getElementById('action_artis').value
+                'songsName': document.getElementsByClassName('input-lagu').value,
+                'songsArtist' : document.getElementsByClassName('input-artis').value
             }]
         }
         console.log(newPlaylist);
@@ -68,7 +68,7 @@ function addPlaylist(){
             type: 'POST',
             datatype:'json',
             contentType: "application/json; charset=utf-8",
-            crossDomain:true,
+            crossDomain:true, 
             xhrFields: {
                 withCredentials: true
              },
@@ -81,7 +81,7 @@ function addPlaylist(){
         });
 }
 
-$(document).ready(function() {
+$(document).ready(function() { 
     $("#submit-btn").on("click",function(){
         addPlaylist();
     })
