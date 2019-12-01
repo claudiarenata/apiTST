@@ -63,7 +63,7 @@ function addPlaylist(){
         }
         console.log(newPlaylist);
         $.ajax({
-            url: 'http://3.210.119.72:6002/api/playlist',
+            url: 'http://54.164.251.124:6003/api/playlist',
             data: JSON.stringify(newPlaylist),
             type: 'POST',
             datatype:'json',
