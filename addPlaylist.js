@@ -55,7 +55,6 @@ $(document).ready(function () {
 
 function addPlaylist(){
         var newPlaylist = {
-<<<<<<< HEAD
             'playlistName' : document.getElementById('action_id').value,
             'songs' : [{
                 'songsName': document.getElementById('action_name').value,
@@ -63,17 +62,6 @@ function addPlaylist(){
             }]
         }
         console.log(newPlaylist);
-=======
-            'playlistName' : $('#action_id').val(),
-            'songs' : {
-                'songsName': $('#action_name').val(),
-                'songsArtist': $('#action_artis').val()
-            }
-        };
-        console.log(newPlaylist); 
-
-            
->>>>>>> 4be4aff9da7e7c05ab4d03ec0e87967ee8f7e35f
         $.ajax({
             url: 'http://3.210.119.72:6002/api/playlist',
             data: JSON.stringify(newPlaylist),
