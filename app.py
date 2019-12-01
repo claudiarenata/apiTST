@@ -45,6 +45,7 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Credentials', 'true')
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 # get data from spotify #
