@@ -58,12 +58,12 @@ def songs():
         cursor = conn.cursor()
         pName = request.json.get('playlistName')
         ceknama = cursor.execute("SELECT playlistName from playlist WHERE playlistName=%s", pName)
-        if (ceknama != null) {
+        if (ceknama != null) :
             response = {
                 'status' : '400',
                 'message' : 'gagal menambahkan playlist'
             }
-        } else {
+        else :
             # memasukan data ke table playlist #
             playtab = """INSERT INTO playlist(playlistName) VALUES (%s)"""
             data = (pName)
@@ -108,7 +108,6 @@ def songs():
                 'playlistName' : pName,
                 'songList' : songsList
             }
-        }
     except Exception as e:
         return e
     finally:
