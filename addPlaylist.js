@@ -27,6 +27,12 @@ $(document).ready(function () {
 
 function addPlaylist(){
 
+    var inputs = document.getElementsByClassName('newsongs'),
+    songsArr  = [].map.call(inputs, function( input ) {
+        var namalagu = songsArr[0][0];
+        var namaartis = songsArr[0][1];
+    });
+
     var newPlaylist = {
         'playlistName' : document.getElementById('action_id').value,
         'songs' : [{
@@ -48,7 +54,7 @@ function addPlaylist(){
         success: function(response) {
             alert('Berhasil Menambahkan Playlist');
         },
-        error: function(error) {
+        error: function(response) {
             alert(error);
         }
     });
