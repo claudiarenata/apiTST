@@ -102,7 +102,7 @@ def songs():
             'songList' : songsList
         }
     except Exception as e:
-        return e
+        return jsonify(e.args)
     finally:
         conn.close()
         cursor.close()
