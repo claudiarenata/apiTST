@@ -26,7 +26,7 @@ $(document).ready(function () {
 });
 
 function addPlaylist(){
-    
+
     var newPlaylist = {
         'playlistName' : document.getElementById('action_id').value,
         'songs' : [{
@@ -37,7 +37,7 @@ function addPlaylist(){
     console.log(newPlaylist);
     $.ajax({
         url: 'http://54.164.251.124:6003/api/playlist',
-        data: JSON.stringify(newPlaylist),
+        data: newPlaylist,
         type: 'POST',
         datatype:'json',
         contentType: "application/json; charset=utf-8",
