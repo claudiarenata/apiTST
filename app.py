@@ -24,9 +24,9 @@ mysql = MySQL()
 app.config['DEBUG'] = True
 
 # configure db mysql #
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_HOST'] = '34.230.47.220'
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'adiera'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'mysql'
 app.config['MYSQL_DATABASE_DB'] = 'playlist'
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 mysql.init_app(app)
