@@ -29,8 +29,11 @@ function addPlaylist(){
 
     var newPlaylist = {
         'playlistName' : document.getElementById('action_id').value,
-        'songsName': document.getElementById('action_name').value,
-        'songsArtist' : document.getElementById('action_artis').value
+        'songs' : {
+            'songsName': document.getElementById('action_name').value,
+            'songsArtist' : document.getElementById('action_artis').value
+        }
+        
     }
     console.log(newPlaylist);
     $.ajax({
@@ -43,8 +46,7 @@ function addPlaylist(){
         xhrFields: {
             withCredentials: true
             },
-        success: function(response) {
-            console.log(response); 
+        success: function(response) { 
             alert('Berhasil Menambahkan Playlist');
         },
         error: function(error) {
