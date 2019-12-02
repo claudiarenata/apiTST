@@ -58,7 +58,7 @@ def songs():
         cursor = conn.cursor()
         pName = request.json.get('playlistName')
         ceknama = cursor.execute("SELECT playlistName from playlist WHERE playlistName=%s", pName)
-        if (ceknama != null) :
+        if (ceknama.length != 0) :
             response = {
                 'status' : '400',
                 'message' : 'gagal menambahkan playlist'
