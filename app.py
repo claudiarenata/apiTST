@@ -68,7 +68,7 @@ def songs():
             playtab = """INSERT INTO playlist(playlistName) VALUES (%s)"""
             data = (pName)
             cursor.execute(playtab, data)
-            conn.commit()er
+            conn.commit()
             songs = request.json.get('songs')
             songsList = []
             # fetch playlistID #
