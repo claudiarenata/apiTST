@@ -29,10 +29,10 @@ function addPlaylist(){
 
     var newPlaylist = {
         'playlistName' : document.getElementById('action_id').value,
-        'songs' : {
+        'songs' : [{
             'songsName': document.getElementById('action_name').value,
             'songsArtist' : document.getElementById('action_artis').value
-        }
+        }]
         
     }
     console.log(newPlaylist);
