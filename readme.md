@@ -27,7 +27,7 @@ http://54.164.251.124:6004
 ## Dokumentasi API 
 | Method | Deskripsi | Akses|
 | :---: | :---: | :---: |
-GET |Menampilkan informasi video berdasarkan keyword ​ tertentu | http://54.164.251.124:6003/api/you tubesearch?=keyword 
+GET |Menampilkan informasi video berdasarkan keyword ​ tertentu | http://54.164.251.124:6003/api/youtubesearch?=keyword 
 GET| Menampilkan nama ​playlist| http://54.164.251.124:6003/api/allplaylist
 GET| Menampilkan seluruh lagu dalam ​playlist | http://54.164.251.124:6003/api/playlist?playlistName= 
 POST | Menambahkan ​playlist ​ ke dalam ​database |http://54.164.251.124:6003/api/playlist 
