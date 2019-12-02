@@ -45,6 +45,7 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Credentials', 'true')
+    
     return response
 
 # get data from spotify #
@@ -56,49 +57,57 @@ def songs():
         conn = mysql.connect()
         cursor = conn.cursor()
         pName = request.json.get('playlistName')
-        # memasukan data ke table playlist #
-        playtab = """INSERT INTO playlist(playlistName) VALUES (%s)"""
-        data = (pName)
-        cursor.execute(playtab, data)
-        conn.commit()
-        songs = request.json.get('songs')
-        songsList = []
-        # fetch playlistID #
-        reqplayID = cursor.execute("SELECT playlistID FROM playlist WHERE playlistName=%s", pName)
-        resplayID = cursor.fetchall()
-        for x in songs:     
-            sName = x.get('songsName')
-            sart = x.get('songsArtist')
-            psaved = sp.search(q=sName + " " + sart, limit=1, type='track')
-            tracks = psaved['tracks']
-            items = tracks['items']
-            artist = items[0]['artists']
-            artistList = []
-            # memasukan data lagu ke tabel tracks #
-            trackstab = """INSERT INTO tracks(songsName, songsURL, playlistID) VALUES (%s, %s, %s)"""
-            data = (items[0]['name'], items[0]['uri'], resplayID[0])
-            cursor.execute(trackstab, data)
-            conn.commit()
-            # fetch songsID #
-            reqsongID = cursor.execute("SELECT songsID FROM tracks WHERE tracks.playlistID = %s ORDER BY songsID DESC limit 1", resplayID[0])
-            ressongID = cursor.fetchall()
-            for y in artist:
-                nartist = y.get('name')
-                artistList.append(nartist)
-                # memasukan data artis ke tabel artists #
-                artiststab = """INSERT INTO artists(artistsName, songsID) VALUES (%s, %s)"""
-                data = (nartist, ressongID[0])
-                cursor.execute(artiststab,data)
-                conn.commit()
-            hasil = {
-                'songsName' : items[0]['name'],
-                'songsURL' : items[0]['uri'],
-                'songsArtist' : artistList
+        ceknama = cursor.execute("SELECT playlistName from playlist WHERE playlistName=%s", pName)
+        if (ceknama != null) {
+            response = {
+                'status' : '400',
+                'message' : 'gagal menambahkan playlist'
             }
-            songsList.append(hasil)
-        response = {
-            'playlistName' : pName,
-            'songList' : songsList
+        } else {
+            # memasukan data ke table playlist #
+            playtab = """INSERT INTO playlist(playlistName) VALUES (%s)"""
+            data = (pName)
+            cursor.execute(playtab, data)
+            conn.commit()er
+            songs = request.json.get('songs')
+            songsList = []
+            # fetch playlistID #
+            reqplayID = cursor.execute("SELECT playlistID FROM playlist WHERE playlistName=%s", pName)
+            resplayID = cursor.fetchall()
+            for x in songs:     
+                sName = x.get('songsName')
+                sart = x.get('songsArtist')
+                psaved = sp.search(q=sName + " " + sart, limit=1, type='track')
+                tracks = psaved['tracks']
+                items = tracks['items']
+                artist = items[0]['artists']
+                artistList = []
+                # memasukan data lagu ke tabel tracks #
+                trackstab = """INSERT INTO tracks(songsName, songsURL, playlistID) VALUES (%s, %s, %s)"""
+                data = (items[0]['name'], items[0]['uri'], resplayID[0])
+                cursor.execute(trackstab, data)
+                conn.commit()
+                # fetch songsID #
+                reqsongID = cursor.execute("SELECT songsID FROM tracks WHERE tracks.playlistID = %s ORDER BY songsID DESC limit 1", resplayID[0])
+                ressongID = cursor.fetchall()
+                for y in artist:
+                    nartist = y.get('name')
+                    artistList.append(nartist)
+                    # memasukan data artis ke tabel artists #
+                    artiststab = """INSERT INTO artists(artistsName, songsID) VALUES (%s, %s)"""
+                    data = (nartist, ressongID[0])
+                    cursor.execute(artiststab,data)
+                    conn.commit()
+                hasil = {
+                    'songsName' : items[0]['name'],
+                    'songsURL' : items[0]['uri'],
+                    'songsArtist' : artistList
+                }
+                songsList.append(hasil)
+            response = {
+                'playlistName' : pName,
+                'songList' : songsList
+            }
         }
     except Exception as e:
         return e
