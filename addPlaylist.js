@@ -25,60 +25,33 @@ $(document).ready(function () {
 
 });
 
-// $("#formbuku").submit(function(event) {
-
-//     /* stop form from submitting normally */
-//     event.preventDefault();
-
-//     /* get the action attribute from the <form action=""> element */
-//     var $form = $( this ),
-//       url = $form.attr( 'action' );
-
-//   /* Send the data using post with element id name and name2*/
-//     var posting = $.post( url, { 
-//         ISBN: $('#ISBN').val(), 
-//         Judul_Buku: $('#judul').val(), 
-//         Pengarang: $('#Pengarang').val(),
-//         Penerbit: $('#Penerbit').val(), 
-//         Tahun_Terbit : $('#Tahun').val(), 
-//         Kategori : $('#Kategori').val(), 
-//         Sinopsis : $('#sinopsis').val(), 
-//         Stok_Buku :$('#Stok_Buku').val()   }
-//         );
-
-//     /* Alerts the results */
-//     posting.done(function( data ) {
-//         alert(data['message']);
-//         location.reload();
-//     });
-// });
-
 function addPlaylist(){
-        var newPlaylist = {
-            'playlistName' : document.getElementById('action_id').value,
-            'songs' : [{
-                'songsName': document.getElementsById('action_name').value,
-                'songsArtist' : document.getElementsById('action_artis').value
-            }]
-        }
-        console.log(newPlaylist);
-        $.ajax({
-            url: 'http://54.164.251.124:6003/api/playlist',
-            data: JSON.stringify(newPlaylist),
-            type: 'POST',
-            datatype:'json',
-            contentType: "application/json; charset=utf-8",
-            crossDomain:true, 
-            xhrFields: {
-                withCredentials: true
-             },
-            success: function(response) {
-                alert('Berhasil Menambahkan Playlist');
+    
+    var newPlaylist = {
+        'playlistName' : document.getElementById('action_id').value,
+        'songs' : [{
+            'songsName': document.getElementsByClassName('input_lagu').value,
+            'songsArtist' : document.getElementsByClassName('input_artis').value
+        }]
+    }
+    console.log(newPlaylist);
+    $.ajax({
+        url: 'http://54.164.251.124:6003/api/playlist',
+        data: JSON.stringify(newPlaylist),
+        type: 'POST',
+        datatype:'json',
+        contentType: "application/json; charset=utf-8",
+        crossDomain:true, 
+        xhrFields: {
+            withCredentials: true
             },
-            error: function(error) {
-                alert(error);
-            }
-        });
+        success: function(response) {
+            alert('Berhasil Menambahkan Playlist');
+        },
+        error: function(error) {
+            alert(error);
+        }
+    });
 }
 
 $(document).ready(function() { 
