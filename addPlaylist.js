@@ -46,6 +46,7 @@ function addPlaylist(){
             withCredentials: true
             },
         success: function(response) {
+            console.log(response); 
             alert('Berhasil Menambahkan Playlist');
         },
         error: function(error) {
