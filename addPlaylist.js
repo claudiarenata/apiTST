@@ -39,11 +39,12 @@ function addPlaylist(){
             'songsName': document.getElementById('action_name').value,
             'songsArtist' : document.getElementById('action_artis').value
         }]
+        
     }
     console.log(newPlaylist);
     $.ajax({
         url: 'http://54.164.251.124:6003/api/playlist',
-        data: newPlaylist,
+        data: JSON.stringify(newPlaylist),
         type: 'POST',
         datatype:'json',
         contentType: "application/json; charset=utf-8",
@@ -51,7 +52,7 @@ function addPlaylist(){
         xhrFields: {
             withCredentials: true
             },
-        success: function(response) {
+        success: function(response) { 
             alert('Berhasil Menambahkan Playlist');
         },
         error: function(response) {

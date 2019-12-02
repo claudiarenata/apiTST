@@ -41,7 +41,6 @@ $(document).ready(function() {
             type:'GET',
             dataType: 'json',
             success: function(response) {
-                console.log(Headers);
               content="";
               $.each(response, function(key, value){
                   $.each(value, function(key,value) {
